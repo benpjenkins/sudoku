@@ -1,5 +1,4 @@
 const getRow = (puzzle, rowIdx) => {
-debugger;
 return puzzle[rowIdx];
 }
 
