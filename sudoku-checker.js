@@ -47,6 +47,32 @@ const getGrid = (puzzle, xCord, yCord) => {
     return grid;
 }
 
+
+const includes1to9 = (input) => {
+    if (!input.includes(1)) {
+        return false;
+    } else if (!input.includes(2)) {
+        return false;
+    } else if (!input.includes(3)) {
+        return false;
+    } else if (!input.includes(4)) {
+        return false;
+    } else if (!input.includes(5)) {
+        return false;
+    } else if (!input.includes(6)) {
+        return false;
+    } else if (!input.includes(7)) {
+        return false;
+    } else if (!input.includes(8)) {
+        return false;
+    } else if (!input.includes(9)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
 let puzzle = [[ 8,9,5,   7,4,2,   1,3,6 ],
               [ 2,7,1,   9,6,3,   4,8,5 ],
               [ 4,6,3,   5,8,1,   7,9,2 ],
