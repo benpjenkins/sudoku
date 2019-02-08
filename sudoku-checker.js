@@ -5,8 +5,7 @@ const getRow = (puzzle, rowIdx) => {
 const getColumn = (puzzle, columnIdx) => {
     let column = [];
     for (let i = 0; i < puzzle.length; i++) {
-        let currentRow = puzzle[i];
-        column.push(currentRow[columnIdx]);
+        column.push(puzzle[i][columnIdx]);
     }
     return column;
 }
@@ -79,26 +78,20 @@ const includes1to9 = (input) => {
 sudokuIsValid = (puzzle) => {
     //test if any row is false
     for (let i = 0; i < puzzle.length; i++) {
-        let value = getRow(puzzle, i)
-        let result = includes1to9(value);
-        if (result === false) {
+        let row = getRow(puzzle, i)
+        if (includes1to9(row) === false) {
           return false;
         }
-    }
-    //test if any column is false
-    for (let i = 0; i < puzzle.length; i++) {
-        let value = getColumn(puzzle, i)
-        let result = includes1to9(value);
-        if (result === false) {
+        //test if any column is false;
+        let column = getColumn(puzzle, i)
+        if (includes1to9(column) === false) {
           return false;
-        }
+        } 
     }
     //test if any 3x3 grid is false.
     for (let i = 0; i < 3; i ++) {
         for (let j = 0; j < 3; j++) {
-            let value = getGrid(puzzle, i, j)
-            let result = includes1to9(value);
-            if (result === false) {
+            if (includes1to9(getGrid(puzzle, i, j)) === false) {
                 return false;
             }
         }
@@ -152,6 +145,5 @@ console.log(sudokuIsValid(puzzle));
 console.log(sudokuIsValid(falsePuzzle));
 //should be true
 console.log(isSame (puzzle, puzzle));
-
 //should be false
-console.log(isSame (puzzle, falsePuzzle));
+console.log(isSame (puzzle, falsePuzzle))
