@@ -14,8 +14,6 @@ const getGrid = (puzzle, xCord, yCord) => {
     let grid = [];
     let startIdx = 0;
     let endIdx = 0;
-    //these if statements specify the correct rows to begin looking 
-    //for values to push to grid
     if (yCord === 0) {
         startIdx = 0;
         endIdx = 2;
@@ -26,8 +24,6 @@ const getGrid = (puzzle, xCord, yCord) => {
         startIdx = 6;
         endIdx = 8;
     }
-    //this loop pushes the correct columns after the correct rows have 
-    //been given to it as startIdx and endIdx
     for ( let i = startIdx; i <= endIdx; i++) {
         let val = puzzle[i]
         if (xCord === 0) {
@@ -47,10 +43,6 @@ const getGrid = (puzzle, xCord, yCord) => {
     return grid;
 }
 
-//check to see if every number from 1-9 is in the current row,
-//column, or 3x3 grid.  Doesn't check for doubles but if previous
-//functions work as expected any double would result in another number
-//missing from this functions input and would then be false
 const includes1to9 = (input) => {
     if (!input.includes(1)) {
         return false;
@@ -76,19 +68,14 @@ const includes1to9 = (input) => {
 }
 
 sudokuIsValid = (puzzle) => {
-    //test if any row is false
     for (let i = 0; i < puzzle.length; i++) {
-        let row = getRow(puzzle, i)
-        if (includes1to9(row) === false) {
+        if (includes1to9(getRow(puzzle, i)) === false) {
           return false;
         }
-        //test if any column is false;
-        let column = getColumn(puzzle, i)
-        if (includes1to9(column) === false) {
+        if (includes1to9(getColumn(puzzle, i)) === false) {
           return false;
         } 
     }
-    //test if any 3x3 grid is false.
     for (let i = 0; i < 3; i ++) {
         for (let j = 0; j < 3; j++) {
             if (includes1to9(getGrid(puzzle, i, j)) === false) {
@@ -96,7 +83,6 @@ sudokuIsValid = (puzzle) => {
             }
         }
     }
-    //if nothing has returned false, return true
     return true;
 }
 
@@ -105,15 +91,16 @@ const isSame = (puzzle1, puzzle2) => {
         let currentRow1 = puzzle1[i];
         let currentRow2 = puzzle2[i]
         for (let j = 0; j < currentRow1.length; j++) {
-            let currentChar1 = currentRow1[j];
-            let currentChar2 = currentRow2[j];
-            if (currentChar1 !== currentChar2) {
+            if (currentRow1[j] !== currentRow2[j]) {
                 return false;
             }
         }
     }
     return true;
 }
+
+
+
 //valid sudoku for testing
 let puzzle = [[ 8,9,5,   7,4,2,   1,3,6 ],
               [ 2,7,1,   9,6,3,   4,8,5 ],
